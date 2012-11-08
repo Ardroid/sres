@@ -32,6 +32,9 @@ class Rectangle(object): # TODO: let's cython this.
   def __getattr__(self, name):
     return self.__get_attr_map[name]()
 
+
+  # Note: all these set methods needs to perform all the correct
+  # transformations on the rectangle _matrix
   def set_width(self, width):
     pass
 
@@ -75,19 +78,19 @@ class Rectangle(object): # TODO: let's cython this.
     pass
 
   def __setattr__(self, name, value):
-    pass
-
+    getattr(self, "set_" + name)(value)
 
   def rotate(self, theta):
     """rotate the rectangle counterclockwise. Theta given in radians.
 
     Rotation is done in place."""
-
     R = np.matrix([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]])
     self._matrix = R * self._matrix
 
-  def collidepoint(self, point):
+  def collidepoint(self, x, y):
+    """Check if a point, (x, y) is inside the rectangle (True) or not (false)"""
     pass
 
   def colliderect(self, rect):
+    """Check if another rectangle is colliding with this one. Returns true or false"""
     pass
