@@ -9,7 +9,8 @@ not exposed to the robots.
 """
 
 class NullWorld(object):
-  """NullWorld is just a world with no obstacles. Multiple robots can be found."""
+  """NullWorld is just a world with no obstacles or tiles. Multiple robots can be
+  found."""
   def __init__(self, length, width, robots):
     """Creates a new null world with a length, a width, and a list of robots
 
