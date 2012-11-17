@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
+
+from __future__ import division
+
+import pygame
 from pygame import Rect
+
+import numpy as np
 
 """
 This world.py file is the internal representation of the world map for the SRES
@@ -56,4 +62,16 @@ class NullWorld(object):
     robot.hitbox.centerx = x
     robot.hitbox.centery = y
     return True
+
+
+class ImageWorld(object):
+  """ImageWorld constructs a world with a bitmap into a numpy matrix"""
+  def __init__(self, filename):
+    surf = pygame.image.load(filename)
+    mat = []
+    for y in xrange(surf.get_height()):
+      mat.append([])
+      for x in xrange(surf.get_width()):
+        mat[y].append(int(round(abs(sum(tuple(surf.get_at((x, y)))[:3]) - 765) / 765)))
+
 

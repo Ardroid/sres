@@ -32,7 +32,6 @@ class Rectangle(object): # TODO: let's cython this.
   def __getattr__(self, name):
     return self.__get_attr_map[name]()
 
-
   # Note: all these set methods needs to perform all the correct
   # transformations on the rectangle _matrix
   def set_width(self, width):
